@@ -4,19 +4,25 @@ import 'flag-icons/css/flag-icons.min.css'
 
 function App() {
   const [films, setFilms] = useState([]);
+  const [series, setSeries] = useState([]);
   const [searchTitle, setSearchTitle] = useState("");
   const filterMovies = (title) => {
     axios.get(`https://api.themoviedb.org/3/search/movie?api_key=033450f6a231abdb3bb2b8319239d639&query=${title}&language=it-IT`).then((res) => {
       setFilms(res.data.results);
     });
   }
-
+  const filterSeries = (title) => {
+    axios.get(`https://api.themoviedb.org/3/search/tv?api_key=033450f6a231abdb3bb2b8319239d639&query=${title}&language=it-IT`).then((res) => {
+      setSeries(res.data.results);
+    })
+  }
   const handleChange = (e) => {
     setSearchTitle(e.target.value);
   }
   const handleSubmit = (e) => {
     e.preventDefault();
     filterMovies(searchTitle);
+    filterSeries(searchTitle);
     setSearchTitle("");
   }
 
@@ -47,6 +53,7 @@ function App() {
         </header>
         <main>
           <div className="row g-3">
+            <h2>Films</h2>
             {films.map((film) => (
               <div className="col-4" key={film.id}>
                 <div className="card">
@@ -60,6 +67,24 @@ function App() {
                       film.original_language === "it" ? <span className="fi fi-it flag"></span> : <span className="fi fi-us flag"></span>
                     }</p>
                     <p>{film.vote_average}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+            <h2>Series</h2>
+            {series.map((serie) => (
+              <div className="col-4" key={serie.id}>
+                <div className="card">
+                  <div className="card-img">
+                    <img src="" alt="" />
+                  </div>
+                  <div className="card-body">
+                    <h3>{serie.name}</h3>
+                    <p>{serie.original_name}</p>
+                    <p>{
+                      serie.original_language === "it" ? <span className="fi fi-it flag"></span> : <span className="fi fi-us flag"></span>
+                    }</p>
+                    <p>{serie.vote_average}</p>
                   </div>
                 </div>
               </div>
