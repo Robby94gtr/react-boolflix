@@ -1,7 +1,8 @@
 import React from "react";
 import axios from "axios";
+import Stars from "./Stars";
 import { useState, useEffect } from "react";
-const FilmsSeriesList = ({ title }) => {
+const FilmsSeriesList = ({ title, vote }) => {
     const [films, setFilms] = useState([]);
     const [series, setSeries] = useState([]);
     const filterMovies = (title) => {
@@ -26,28 +27,7 @@ const FilmsSeriesList = ({ title }) => {
                 setSeries(res.data.results);
             });
     };
-    const starRating = (vote) => {
-        const rating = Math.round(vote / 2);
-        return (
-            <span>
-                <i
-                    className={rating >= 1 ? "fa-solid fa-star" : "fa-regular fa-star"}
-                ></i>
-                <i
-                    className={rating >= 2 ? "fa-solid fa-star" : "fa-regular fa-star"}
-                ></i>
-                <i
-                    className={rating >= 3 ? "fa-solid fa-star" : "fa-regular fa-star"}
-                ></i>
-                <i
-                    className={rating >= 4 ? "fa-solid fa-star" : "fa-regular fa-star"}
-                ></i>
-                <i
-                    className={rating >= 5 ? "fa-solid fa-star" : "fa-regular fa-star"}
-                ></i>
-            </span>
-        );
-    };
+
 
     return (
         <>
@@ -71,7 +51,9 @@ const FilmsSeriesList = ({ title }) => {
                                     <span className="fi fi-us flag"></span>
                                 )}
                             </p>
-                            <p>{starRating(film.vote_average)}</p>
+                            <p>
+                                <Stars vote={film.vote_average} />
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -96,7 +78,9 @@ const FilmsSeriesList = ({ title }) => {
                                     <span className="fi fi-us flag"></span>
                                 )}
                             </p>
-                            <p>{starRating(serie.vote_average)}</p>
+                            <p>
+                                <Stars vote={serie.vote_average} />
+                            </p>
                         </div>
                     </div>
                 </div>
