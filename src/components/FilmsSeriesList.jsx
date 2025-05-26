@@ -7,7 +7,7 @@ const FilmsSeriesList = ({ title }) => {
     const filterMovies = (title) => {
         axios
             .get(
-                `https://api.themoviedb.org/3/search/movie?api_key=54b9f378fd5384807b6cbb4b453b6528&query=${title}&language=it-IT`
+                `https://api.themoviedb.org/3/search/movie?api_key=033450f6a231abdb3bb2b8319239d639&query=${title}&language=it-IT`
             )
             .then((res) => {
                 setFilms(res.data.results);
@@ -20,14 +20,14 @@ const FilmsSeriesList = ({ title }) => {
     const filterSeries = (title) => {
         axios
             .get(
-                `https://api.themoviedb.org/3/search/tv?api_key=54b9f378fd5384807b6cbb4b453b6528&query=${title}&language=it-IT`
+                `https://api.themoviedb.org/3/search/tv?api_key=033450f6a231abdb3bb2b8319239d639&query=${title}&language=it-IT`
             )
             .then((res) => {
                 setSeries(res.data.results);
             });
     };
     const starRating = (vote) => {
-        const rating = Math.round(Math.floor(vote) / 2);
+        const rating = Math.round(vote / 2);
         return (
             <span>
                 <i
