@@ -3,7 +3,6 @@ import axios from "axios"
 import 'flag-icons/css/flag-icons.min.css'
 
 function App() {
-
   const [films, setFilms] = useState([]);
   const [series, setSeries] = useState([]);
   const [searchTitle, setSearchTitle] = useState("");
@@ -27,6 +26,19 @@ function App() {
     setSearchTitle("");
   }
 
+
+  const starRating = (vote) => {
+    const rating = Math.round(Math.floor(vote) / 2);
+    return (
+      <div>
+        <i className={rating >= 1 ? "fa-solid fa-star" : "fa-regular fa-star"}></i>
+        <i className={rating >= 2 ? "fa-solid fa-star" : "fa-regular fa-star"}></i>
+        <i className={rating >= 3 ? "fa-solid fa-star" : "fa-regular fa-star"}></i>
+        <i className={rating >= 4 ? "fa-solid fa-star" : "fa-regular fa-star"}></i>
+        <i className={rating >= 5 ? "fa-solid fa-star" : "fa-regular fa-star"}></i>
+      </div>
+    )
+  }
   return (
     <>
       <div className="container-fluid">
@@ -67,7 +79,7 @@ function App() {
                     <p>{
                       film.original_language === "it" ? <span className="fi fi-it flag"></span> : <span className="fi fi-us flag"></span>
                     }</p>
-                    <p>{film.vote_average}</p>
+                    <p>{starRating(film.vote_average)}</p>
                   </div>
                 </div>
               </div>
@@ -85,7 +97,7 @@ function App() {
                     <p>{
                       serie.original_language === "it" ? <span className="fi fi-it flag"></span> : <span className="fi fi-us flag"></span>
                     }</p>
-                    <p>{serie.vote_average}</p>
+                    <p>{starRating(serie.vote_average)}</p>
                   </div>
                 </div>
               </div>
