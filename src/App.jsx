@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
+import 'flag-icons/css/flag-icons.min.css'
 
 function App() {
   const [films, setFilms] = useState([]);
@@ -55,7 +56,9 @@ function App() {
                   <div className="card-body">
                     <h3>{film.title}</h3>
                     <p>{film.original_title}</p>
-                    <p>{film.original_language}</p>
+                    <p>{
+                      film.original_language === "it" ? <span className="fi fi-it flag"></span> : <span className="fi fi-us flag"></span>
+                    }</p>
                     <p>{film.vote_average}</p>
                   </div>
                 </div>
