@@ -1,44 +1,32 @@
-import { useState, useEffect } from "react"
-import axios from "axios"
-import 'flag-icons/css/flag-icons.min.css'
+import FilmsSeriesList from "./components/FilmsSeriesList";
+import { useState } from "react";
 
 function App() {
-  const [films, setFilms] = useState([]);
-  const [series, setSeries] = useState([]);
+  // const [films, setFilms] = useState([]);
+  // const [series, setSeries] = useState([]);
   const [searchTitle, setSearchTitle] = useState("");
-  const filterMovies = (title) => {
-    axios.get(`https://api.themoviedb.org/3/search/movie?api_key=033450f6a231abdb3bb2b8319239d639&query=${title}&language=it-IT`).then((res) => {
-      setFilms(res.data.results);
-    });
-  }
-  const filterSeries = (title) => {
-    axios.get(`https://api.themoviedb.org/3/search/tv?api_key=033450f6a231abdb3bb2b8319239d639&query=${title}&language=it-IT`).then((res) => {
-      setSeries(res.data.results);
-    })
-  }
+  const [searchedTitle, setSearchedTitle] = useState("");
+  // const filterMovies = (title) => {
+  //   axios.get(`https://api.themoviedb.org/3/search/movie?api_key=54b9f378fd5384807b6cbb4b453b6528&query=${title}&language=it-IT`).then((res) => {
+  //     setFilms(res.data.results);
+  //   });
+  // }
+  // const filterSeries = (title) => {
+  //   axios.get(`https://api.themoviedb.org/3/search/tv?api_key=54b9f378fd5384807b6cbb4b453b6528&query=${title}&language=it-IT`).then((res) => {
+  //     setSeries(res.data.results);
+  //   })
+  // }
   const handleChange = (e) => {
     setSearchTitle(e.target.value);
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    filterMovies(searchTitle);
-    filterSeries(searchTitle);
+    setSearchedTitle(searchTitle);
     setSearchTitle("");
   }
 
 
-  const starRating = (vote) => {
-    const rating = Math.round(Math.floor(vote) / 2);
-    return (
-      <div>
-        <i className={rating >= 1 ? "fa-solid fa-star" : "fa-regular fa-star"}></i>
-        <i className={rating >= 2 ? "fa-solid fa-star" : "fa-regular fa-star"}></i>
-        <i className={rating >= 3 ? "fa-solid fa-star" : "fa-regular fa-star"}></i>
-        <i className={rating >= 4 ? "fa-solid fa-star" : "fa-regular fa-star"}></i>
-        <i className={rating >= 5 ? "fa-solid fa-star" : "fa-regular fa-star"}></i>
-      </div>
-    )
-  }
+  
   return (
     <>
       <div className="container-fluid">
@@ -66,7 +54,8 @@ function App() {
         </header>
         <main>
           <div className="row g-3">
-            <h2>Films</h2>
+             <FilmsSeriesList title={searchedTitle}/>
+            {/* <h2>Films</h2>
             {films.map((film) => (
               <div className="col-4" key={film.id}>
                 <div className="card">
@@ -101,7 +90,7 @@ function App() {
                   </div>
                 </div>
               </div>
-            ))}
+            ))} */}
           </div>
         </main>
       </div>
