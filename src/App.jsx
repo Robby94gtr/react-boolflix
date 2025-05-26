@@ -45,9 +45,9 @@ function App() {
           </div>
         </header>
         <main>
-          <div className="row">
+          <div className="row g-3">
             {films.map((film) => (
-              <div className="col-3" key={film.id}>
+              <div className="col-4" key={film.id}>
                 <div className="card">
                   <div className="card-img">
                     <img src="" alt="" />
