@@ -1,17 +1,16 @@
+header {
+  height: 100px;
+  align-items: center;
+  display: flex;
+}
+
 .logo {
   font-size: 40px;
-  padding: 5px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .bg-films {
   background-color: rgb(39, 39, 39);
-}
-
-.film-not-found {}
-
-.retro {
-  display: none;
 }
 
 .card-img img {
