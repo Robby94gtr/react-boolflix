@@ -1,10 +1,12 @@
-import React from "react";
+import React, { use } from "react";
 import axios from "axios";
 import Stars from "./Stars";
 import { useState, useEffect } from "react";
 const FilmsSeriesList = ({ title, vote }) => {
     const [films, setFilms] = useState([]);
     const [series, setSeries] = useState([]);
+    const [flippedFilmCard, setFlippedFilmCard] = useState(null);
+    const [flippedSeriesCard, setFlippedSeriesCard] = useState(null);
     const filterMovies = (title) => {
         axios
             .get(
@@ -28,6 +30,20 @@ const FilmsSeriesList = ({ title, vote }) => {
             });
     };
 
+    const handleFilmClick = (index) => {
+        if (flippedFilmCard == index) {
+            setFlippedFilmCard(null);
+        } else {
+            setFlippedFilmCard(index);
+        }
+    };
+    const handleSeriesClick = (index) => {
+        if (flippedSeriesCard == index) {
+            setFlippedSeriesCard(null);
+        } else {
+            setFlippedSeriesCard(index);
+        }
+    };
 
     return (
         <>
@@ -40,16 +56,19 @@ const FilmsSeriesList = ({ title, vote }) => {
             ) : (
                 <>
                     <h2 className="text-light">Films</h2>
-                    {films.map((film) => (
+                    {films.map((film, index) => (
                         <div className="col-4" key={film.id}>
-                            <div className="card">
-                                <div className="card-img">
+                            <div className="card" onClick={() => handleFilmClick(index)}>
+                                <div className="card-img front">
                                     <img
                                         src={`https://image.tmdb.org/t/p/w200/${film.poster_path}`}
                                         alt="film-poster"
                                     />
                                 </div>
-                                <div className="card-body">
+                                <div
+                                    className={`card-body ${flippedFilmCard === index ? "" : "retro "
+                                        }`}
+                                >
                                     <h3>{film.title}</h3>
                                     <p>{film.original_title}</p>
                                     <p>
@@ -67,16 +86,19 @@ const FilmsSeriesList = ({ title, vote }) => {
                         </div>
                     ))}
                     <h2 className="text-light">Series</h2>
-                    {series.map((serie) => (
+                    {series.map((serie, index) => (
                         <div className="col-4" key={serie.id}>
-                            <div className="card">
+                            <div className="card" onClick={() => handleSeriesClick(index)}>
                                 <div className="card-img">
                                     <img
                                         src={`https://image.tmdb.org/t/p/w200/${serie.poster_path}`}
                                         alt=""
                                     />
                                 </div>
-                                <div className="card-body">
+                                <div
+                                    className={`card-body ${flippedSeriesCard === index ? "" : "retro"
+                                        }`}
+                                >
                                     <h3>{serie.name}</h3>
                                     <p>{serie.original_name}</p>
                                     <p>

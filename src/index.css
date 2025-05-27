@@ -1,7 +1,3 @@
-.card {
-  height: 100%;
-}
-
 .logo {
   font-size: 40px;
   padding: 5px;
@@ -12,9 +8,11 @@
   background-color: rgb(39, 39, 39);
 }
 
-.film-not-found {}
+.film-not-found{
 
-.card-body {
+}
+
+.retro {
   display: none;
 }
 
