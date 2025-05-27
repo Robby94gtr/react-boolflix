@@ -5,7 +5,7 @@ function App() {
   const [searchTitle, setSearchTitle] = useState("");
   const [searchedTitle, setSearchedTitle] = useState("");
 
-const handleChange = (e) => {
+  const handleChange = (e) => {
     setSearchTitle(e.target.value);
   };
   const handleSubmit = (e) => {
@@ -15,14 +15,14 @@ const handleChange = (e) => {
   };
   return (
     <>
-      <div className="container-fluid">
-        <header>
+      <header className="bg-dark">
+        <div className="container-fluid">
           <div className="">
-            <div className="row justify-content-between">
-              <div className="col-3">logo</div>
+            <div className="row justify-content-between align-items-center">
+              <div className="col-3 text-danger logo">BoolFlix</div>
               <div className="col-4">
                 <form className="input-group d-flex" onSubmit={handleSubmit}>
-                   <input
+                  <input
                     type="text"
                     className="form-control"
                     placeholder="Search"
@@ -36,13 +36,13 @@ const handleChange = (e) => {
               </div>
             </div>
           </div>
-        </header>
-        <main>
-          <div className="row g-3">
-             <FilmsSeriesList title={searchedTitle} />
-          </div>
-        </main>
-      </div>
+        </div>
+      </header>
+      <main>
+        <div className="row g-3">
+          <FilmsSeriesList title={searchedTitle} />
+        </div>
+      </main>
     </>
   )
 }
