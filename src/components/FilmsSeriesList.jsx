@@ -56,35 +56,38 @@ const FilmsSeriesList = ({ title, vote }) => {
             ) : (
                 <>
                     <h2 className="text-light">Films</h2>
-                    {films.map((film, index) => (
-                        <div className="col-4" key={film.id}>
-                            <div className="card" onClick={() => handleFilmClick(index)}>
-                                <div className="card-img front">
-                                    <img
-                                        src={`https://image.tmdb.org/t/p/w200/${film.poster_path}`}
-                                        alt="film-poster"
-                                    />
-                                </div>
+                    <div className="row g-5">
+                        {films.map((film, index) => (
+                            <div className="col-lg-2 col-md-4 col-sm-6" key={film.id}>
                                 <div
-                                    className={`card-body ${flippedFilmCard === index ? "" : "retro "
+                                    className={`card  ${flippedFilmCard === index ? "flipped" : ""
                                         }`}
+                                    onClick={() => handleFilmClick(index)}
                                 >
-                                    <h3>{film.title}</h3>
-                                    <p>{film.original_title}</p>
-                                    <p>
-                                        {film.original_language === "it" ? (
-                                            <span className="fi fi-it flag"></span>
-                                        ) : (
-                                            <span className="fi fi-us flag"></span>
-                                        )}
-                                    </p>
-                                    <p>
-                                        <Stars vote={film.vote_average} />
-                                    </p>
+                                    <div className="card-img card-front">
+                                        <img
+                                            src={`https://image.tmdb.org/t/p/w200/${film.poster_path}`}
+                                            alt="film-poster"
+                                        />
+                                    </div>
+                                    <div className={`card-body card-retro`}>
+                                        <h3>{film.title}</h3>
+                                        <p>{film.original_title}</p>
+                                        <p>
+                                            {film.original_language === "it" ? (
+                                                <span className="fi fi-it flag"></span>
+                                            ) : (
+                                                <span className="fi fi-us flag"></span>
+                                            )}
+                                        </p>
+                                        <p>
+                                            <Stars vote={film.vote_average} />
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                     <h2 className="text-light">Series</h2>
                     {series.map((serie, index) => (
                         <div className="col-4" key={serie.id}>

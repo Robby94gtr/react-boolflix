@@ -8,9 +8,7 @@
   background-color: rgb(39, 39, 39);
 }
 
-.film-not-found{
-
-}
+.film-not-found {}
 
 .retro {
   display: none;
@@ -19,5 +17,38 @@
 .card-img img {
   width: 100%;
   height: 100%;
+}
 
+.card-front,
+.card-retro {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  overflow: hidden;
+
+
+}
+
+.card-front {
+  z-index: 2;
+}
+
+.card-retro {
+  transform: rotateY(180deg);
+  background-color: #000;
+  color: #fff;
+
+}
+
+.card {
+  position: relative;
+  width: 200px;
+  height: 300px;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
 }
