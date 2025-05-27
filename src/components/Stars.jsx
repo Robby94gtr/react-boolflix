@@ -2,25 +2,24 @@ import React from "react";
 
 const Stars = ({ vote }) => {
     const rating = Math.round(vote / 2);
-    return (
-        <span>
-            <i
-                className={rating >= 1 ? "fa-solid fa-star" : "fa-regular fa-star"}
-            ></i>
-            <i
-                className={rating >= 2 ? "fa-solid fa-star" : "fa-regular fa-star"}
-            ></i>
-            <i
-                className={rating >= 3 ? "fa-solid fa-star" : "fa-regular fa-star"}
-            ></i>
-            <i
-                className={rating >= 4 ? "fa-solid fa-star" : "fa-regular fa-star"}
-            ></i>
-            <i
-                className={rating >= 5 ? "fa-solid fa-star" : "fa-regular fa-star"}
-            ></i>
-        </span>
-    );
+    const getStars = () => {
+        let starsList = [];
+        for (let i = 0; i < 5; i++) {
+            if (rating > i) {
+                starsList.push(
+                    <i key={`star-solid-${i}`} className="fa-solid fa-star"></i>
+                );
+            } else {
+                starsList.push(
+                    <i key={`star-regular-${i}`} className="fa-regular fa-star"></i>
+                );
+            }
+        }
+
+        return starsList;
+    };
+
+    return <span>{getStars()}</span>;
 };
 
 export default Stars;

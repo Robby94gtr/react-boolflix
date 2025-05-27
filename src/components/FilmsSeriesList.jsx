@@ -130,7 +130,11 @@ const FilmsSeriesList = ({ title, vote }) => {
                                 >
                                     <div className="card-img card-front">
                                         <img
-                                            src={`https://image.tmdb.org/t/p/w200/${film.poster_path}`}
+                                            src={
+                                                film.poster_path === null
+                                                    ? `https://demofree.sirv.com/nope-not-here.jpg`
+                                                    : `https://image.tmdb.org/t/p/w200/${film.poster_path}`
+                                            }
                                             alt="film-poster"
                                         />
                                     </div>
