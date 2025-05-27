@@ -55,8 +55,10 @@ const FilmsSeriesList = ({ title, vote }) => {
                 </div>
             ) : (
                 <>
-                    <h2 className="text-light">Films</h2>
                     <div className="row g-5">
+                        <div className="col-12">
+                            <h2 className="text-light">Films</h2>
+                        </div>
                         {films.map((film, index) => (
                             <div className="col-lg-2 col-md-4 col-sm-6" key={film.id}>
                                 <div
@@ -88,36 +90,46 @@ const FilmsSeriesList = ({ title, vote }) => {
                             </div>
                         ))}
                     </div>
-                    <h2 className="text-light">Series</h2>
-                    {series.map((serie, index) => (
-                        <div className="col-4" key={serie.id}>
-                            <div className="card" onClick={() => handleSeriesClick(index)}>
-                                <div className="card-img">
-                                    <img
-                                        src={`https://image.tmdb.org/t/p/w200/${serie.poster_path}`}
-                                        alt=""
-                                    />
-                                </div>
+
+                    <div className="row g-5">
+                        <div className="col-12">
+                            <h2 className="text-light">Series</h2>
+                        </div>
+                        {series.map((serie, index) => (
+                            <div className="col-lg-2 col-md-4 col-sm-6" key={serie.id}>
                                 <div
-                                    className={`card-body ${flippedSeriesCard === index ? "" : "retro"
+                                    className={`card ${flippedSeriesCard === index ? "flipped" : ""
                                         }`}
+                                    onClick={() => handleSeriesClick(index)}
                                 >
-                                    <h3>{serie.name}</h3>
-                                    <p>{serie.original_name}</p>
-                                    <p>
-                                        {serie.original_language === "it" ? (
-                                            <span className="fi fi-it flag"></span>
-                                        ) : (
-                                            <span className="fi fi-us flag"></span>
-                                        )}
-                                    </p>
-                                    <p>
-                                        <Stars vote={serie.vote_average} />
-                                    </p>
+                                    <div className="card-img card-front">
+                                        <img
+                                            src={
+                                                serie.poster_path === null
+                                                    ? `https://demofree.sirv.com/nope-not-here.jpg`
+                                                    : `https://image.tmdb.org/t/p/w200/${serie.poster_path}`
+                                            }
+                                            alt=""
+                                        />
+                                    </div>
+                                    <div className={`card-body card-retro`}>
+                                        <h3>{serie.name}</h3>
+                                        <p>{serie.original_name}</p>
+                                        <p>
+                                            {serie.original_language === "it" ? (
+                                                <span className="fi fi-it flag"></span>
+                                            ) : (
+                                                <span className="fi fi-us flag"></span>
+                                            )}
+                                        </p>
+                                        <p>
+                                            <Stars vote={serie.vote_average} />
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </>
             )}
         </>
