@@ -31,7 +31,7 @@ const FilmsSeriesList = ({ title, vote }) => {
 
     return (
         <>
-            <h2>Films</h2>
+            <h2 className="text-light">Films</h2>
             {films.map((film) => (
                 <div className="col-4" key={film.id}>
                     <div className="card">
@@ -58,7 +58,7 @@ const FilmsSeriesList = ({ title, vote }) => {
                     </div>
                 </div>
             ))}
-            <h2>Series</h2>
+            <h2 className="text-light">Series</h2>
             {series.map((serie) => (
                 <div className="col-4" key={serie.id}>
                     <div className="card">

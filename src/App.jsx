@@ -29,8 +29,8 @@ function App() {
                     onChange={handleChange}
                     value={searchTitle}
                   />
-                  <button className="btn btn-primary" type="submit">
-                    Aggiungi
+                  <button className="btn btn-dark mx-2" type="submit">
+                    Cerca
                   </button>
                 </form>
               </div>
@@ -38,8 +38,8 @@ function App() {
           </div>
         </div>
       </header>
-      <main>
-        <div className="row g-3">
+      <main className="bg-films">
+        <div className="row g-3 pt-3">
           <FilmsSeriesList title={searchedTitle} />
         </div>
       </main>

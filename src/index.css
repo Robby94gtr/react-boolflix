@@ -1,8 +1,13 @@
-.card{
+.card {
   height: 100%;
-  }
-.logo{
+}
+
+.logo {
   font-size: 40px;
   padding: 5px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.bg-films {
+  background-color: rgb(39, 39, 39);
 }
